@@ -1,11 +1,13 @@
+///* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { CircularProgress, createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { HistoricalChart } from '../api';
 import { CryptoState } from '../CryptoContext';
-import Chart from 'chart.js/auto';
-import { Line } from 'react-chartjs-2';
 import SelectButton from './SelectButton';
+import { HistoricalChart } from '../api';
+import { Line } from 'react-chartjs-2';
+import Chart from 'chart.js/auto';
+import axios from 'axios';
 
 const chartDays = [
     {
