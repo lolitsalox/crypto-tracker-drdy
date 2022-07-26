@@ -85,6 +85,8 @@ function Currency() {
 
     return (
         <div className={classes.container}>
+
+            {/* Sidebar */}
             <div className={classes.sidebar}>
                 <img
                     src={coin?.image.large}
@@ -139,6 +141,7 @@ function Currency() {
                 </div>
             </div>
 
+            {/* The graph */}
             <CoinInfo coin={coin}/>
         </div>
     )

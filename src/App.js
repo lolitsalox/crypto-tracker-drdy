@@ -4,8 +4,8 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 
 import Header from './components/Header';
-import Home from './pages/Home.js';
 import Currency from './pages/Currency';
+import Home from './pages/Home.js';
 
 const useStyles = makeStyles({
   root: {

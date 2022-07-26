@@ -1,4 +1,3 @@
-///* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { CircularProgress, createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
@@ -78,6 +77,7 @@ function CoinInfo({coin}) {
     return (
         <ThemeProvider theme={darkTheme}>
             <div className={classes.container}>
+            {/* If no historical data, then show a circular progress */}
             { !historicalData ? (
                     <CircularProgress 
                         style={{color: '#00E2EC'}}
@@ -86,6 +86,7 @@ function CoinInfo({coin}) {
                         />
                     ) : (
                         <>
+                        {/* Else show the line graph */}
                         <Line
                             data={{
                                 labels: historicalData.map((coin) => {
@@ -122,6 +123,7 @@ function CoinInfo({coin}) {
                                 fontFamily: 'Poppins',
                             }}
                         >
+                            {/* Days buttons */}
                             {chartDays.map((day) => (
                                 <SelectButton
                                     key={day.value}

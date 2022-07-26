@@ -7,6 +7,7 @@ function CryptoContext({children}) {
     const [currency, setCurrency] = useState("USD");
     const [symbol, setSymbol] = useState("$");
 
+    // Anytime the currency changes, it will set the symbol accordingly 
     useEffect(() => {
         switch (currency) {
             case "USD":

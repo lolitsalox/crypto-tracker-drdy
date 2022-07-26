@@ -1,8 +1,18 @@
-import React from 'react'
+import { 
+    AppBar, 
+    Container, 
+    createTheme, 
+    MenuItem, 
+    Select, 
+    ThemeProvider, 
+    Toolbar, 
+    Typography 
+} from '@material-ui/core'
+
 import { useNavigate } from 'react-router-dom';
-import { AppBar, Container, createTheme, MenuItem, Select, ThemeProvider, Toolbar, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles';
 import { CryptoState } from '../CryptoContext';
+import React from 'react'
 
 const useStyles = makeStyles({
     title: {
@@ -39,6 +49,7 @@ function Header() {
         <AppBar className={classes.bgColor} position='static'>
             <Container>
                 <Toolbar>
+                    {/* Title button */}
                     <Typography 
                     onClick={() => navigate('/')} 
                     className={classes.title}
@@ -47,6 +58,7 @@ function Header() {
                     Crypto Tracker
                     </Typography>
 
+                    {/* Select currency */}
                     <Select
                         variant="outlined"
                         style={{

@@ -1,10 +1,25 @@
+import { 
+    Container, 
+    createTheme, 
+    LinearProgress, 
+    TableBody, 
+    TableContainer, 
+    TextField, 
+    ThemeProvider, 
+    Typography, 
+    Table, 
+    TableHead, 
+    TableRow, 
+    TableCell, 
+    makeStyles 
+} from '@material-ui/core';
+
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
-import { CoinList } from '../api';
 import { CryptoState } from '../CryptoContext';
 import { useNavigate } from 'react-router-dom';
-import { Container, createTheme, LinearProgress, TableBody, TableContainer, TextField, ThemeProvider, Typography, Table, TableHead, TableRow, TableCell, makeStyles } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
+import { CoinList } from '../api';
+import axios from 'axios';
 
 const useStyles = makeStyles({
     row: {
@@ -27,7 +42,6 @@ function numWithCommas(x) {
 }
 
 function CoinsTable() {
-
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
@@ -77,19 +91,24 @@ function CoinsTable() {
                 Top 100 Cryptocurrency Prices
             </Typography>
 
+            
+            {/* Search field */}
             <TextField 
                 label='Search for a crypto currency'
                 variant='filled'
                 style={{width: '100%'}}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value.toLowerCase())}
             />
 
+            {/* Coin table */}
             <TableContainer>
                 { 
                     loading ? (
                         <LinearProgress />
                     ) : (
                         <Table>
+                        
+                            {/* Table head */}
                             <TableHead style={{backgroundColor: '#00adb5'}}>
                                 <TableRow>
                                     {['Coin', 'Price', '24h Change', 'Market Cap'].map((head) => (
@@ -105,6 +124,9 @@ function CoinsTable() {
                                     ))}
                                 </TableRow>
                             </TableHead>
+
+                            
+                            {/* Table body */}
                             <TableBody>
                             {
                                 handleSearch()
@@ -117,6 +139,7 @@ function CoinsTable() {
                                     className={classes.row}
                                     key={row.name}
                                 >
+
                                     <TableCell
                                         component="th"
                                         scope="row"
@@ -126,6 +149,8 @@ function CoinsTable() {
                                             fontFamily: 'Poppins',
                                         }}
                                     >
+                                    
+                                    {/* Coin image */}
                                     <img
                                         src={row?.image}
                                         alt={row.name}
@@ -133,6 +158,7 @@ function CoinsTable() {
                                         style={{ marginBottom: 10 }}
                                     />
 
+                                    {/* Coin name */}
                                     <div
                                         style={{display: 'flex', flexDirection: 'column'}}
                                     >
@@ -149,10 +175,16 @@ function CoinsTable() {
                                     </div>
 
                                     </TableCell>
+
+                                    
+                                    {/* Price */}
                                     <TableCell align='right' style={{fontFamily: 'Poppins'}}>
                                         {symbol}{' '}
                                         {numWithCommas(row.current_price.toFixed(2))}
                                     </TableCell>
+
+                                    
+                                    {/* Profit */}
                                     <TableCell
                                         align='right'
                                         style={{                // Green      Red
@@ -164,6 +196,9 @@ function CoinsTable() {
                                     {profit && '+'}
                                     {row.price_change_percentage_24h.toFixed(2)}%
                                     </TableCell>
+
+
+                                    {/* Market cap */}
                                     <TableCell align='right' style={{fontFamily: 'Poppins'}}>
                                         {symbol}{' '}
                                         {numWithCommas(row.market_cap.toString().slice(0, -6))}
@@ -180,6 +215,8 @@ function CoinsTable() {
                 }
             </TableContainer>
             
+            
+            {/* Pages */}
             <Pagination 
                 style={{
                     padding: 20,

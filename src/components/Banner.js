@@ -1,7 +1,7 @@
 import { Container, makeStyles, Typography } from '@material-ui/core'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     banner: {
         backgroundColor: '#00adb5',
     },
@@ -12,26 +12,44 @@ const useStyles = makeStyles({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',
+        [theme.breakpoints.down("xs")]: {
+            height: 450,
+            flexDirection: 'column',
+        },
     },
     logo: {
         maxHeight: 250,
     }
-})
+}))
 
 function Banner() {
 
   const classes = useStyles();
+
+  const [isMobile, setIsMobile] = useState(false)
+ 
+  const handleResize = () => {
+    if (window.innerWidth < 720) {
+        setIsMobile(true)
+        return
+    }
+    
+    setIsMobile(false)
+  }
+  
+  useEffect(() => {
+    window.addEventListener("resize", handleResize)
+  })
 
   return (
     <div className={classes.banner}>
         <Container className={classes.bannerContent}>
             <div>
             <Typography
-                    variant='h2'
+                    variant={isMobile ? 'h3' : 'h2'}
                     style={{
                         fontWeight: 'bold',
-                        
-        fontFamily: 'Poppins',
+                        fontFamily: 'Poppins',
                     }}
                 >
                 Crypto Tracker
@@ -40,8 +58,7 @@ function Banner() {
             <Typography
                     variant='subtitle1'
                     style={{
-                        
-        fontFamily: 'Poppins',
+                        fontFamily: 'Poppins',
                         textTransform: 'capitalize'
                     }}
                 >
